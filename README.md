@@ -32,6 +32,19 @@ If you are developing a production application, we recommend using TypeScript wi
 - add outlet in body component
 - crete a footer...
 
+
+
+- create a login page...
+- install Axios 
+- install cors in backend => add middleware to app to with configuration {origin:"", credentials:true } 
+- whenevr make api called add... like axios.post {withCredentials:true} => then we get token back to browers as a token..
+- install redux toolkit
+-configure  a store =>provider=> create a slice=> add reducer to store 
+- add redux devtools in crome 
+- login and see if your data is comming in the store 
+- navbar shoulld updated as soon as login
+- reafactor code to add contant js file maked
+
 Body 
  - navbar
    - route=/ => feed
