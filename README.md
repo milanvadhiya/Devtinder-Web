@@ -25,3 +25,16 @@ If you are developing a production application, we recommend using TypeScript wi
 - remove the unecessary code. 
 - install tailwind css
 - install daisyUi and add navbar component into app.jsx
+- create navbar as a seprate component 
+- install react-router-dom
+- browser router create 
+- add childern router like profile and login
+- add outlet in body component
+- crete a footer...
+
+Body 
+ - navbar
+   - route=/ => feed
+   - route= /login =>login
+   - route=/connection => Connections 
+   - route=/profile => profile 
