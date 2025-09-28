@@ -45,6 +45,11 @@ If you are developing a production application, we recommend using TypeScript wi
 - navbar shoulld updated as soon as login
 - reafactor code to add contant js file maked
 
+
+- you should not be able to login without autherized
+- if token is not present redirect to the login page
+- logout and profile page edit page..
+
 Body 
  - navbar
    - route=/ => feed
