@@ -34,11 +34,11 @@ if(connections.length===0)return<h1>Connection not found :( </h1>
       <h1 className='text-bold  text-white text-3xl'> Connection</h1>
     
     {connections.map((connection)=>{
-      const {
+      const {_id,
         firstName,lastName,photoUrl,about,gender,age
       }=connection;
       return(
-        <div  className='m-3 p-3 flex  rounded-lg bg-base-300 w-1/2 mx-auto '> 
+        <div key={_id} className='m-3 p-3 flex  rounded-lg bg-base-300 w-1/2 mx-auto '> 
         <div>
           <img  className='w-20 h-20 rounded-full'alt='photo' src={photoUrl}/>
         </div>

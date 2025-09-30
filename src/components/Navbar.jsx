@@ -46,7 +46,7 @@ const Navigate=useNavigate();
         <li>
           <Link to='/connections' className="justify-between">
             connection
-            <span className="badge">New</span>
+           
           </Link>
         </li>
         
@@ -54,7 +54,14 @@ const Navigate=useNavigate();
         <li>
           <Link to='/profile' className="justify-between">
             Profile
-            <span className="badge">New</span>
+            
+          </Link>
+        </li>
+
+        <li>
+          <Link to='/requests' className="justify-between">
+           Requests
+           
           </Link>
         </li>
         
