@@ -49,6 +49,11 @@ If you are developing a production application, we recommend using TypeScript wi
 - you should not be able to login without autherized
 - if token is not present redirect to the login page
 - logout and profile page edit page..
+- build the userCard
+- edit profile feature
+- show tosts if successfule 
+- implement forgot password festures
+- see all my connections
 
 Body 
  - navbar

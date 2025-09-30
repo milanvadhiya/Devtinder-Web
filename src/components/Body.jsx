@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 const Body = () => {
   const dispatch=useDispatch();
   const Navigate=useNavigate();
-  const userData=useSelector((store)=>store.user.user);
+  const userData=useSelector((store)=>store.user);
 
   const userFetch=async ()=>{
       try{

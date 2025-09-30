@@ -5,15 +5,16 @@ import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../utils/constant';
+import { Link } from 'react-router-dom';
 
 const login = () => {
-  const [emailId, setEmailId] = useState('milan@gmail.com');
-  const [password, setPassword] = useState('Milan@02');
+  const [emailId, setEmailId] = useState('katrina@gmail.com');
+  const [password, setPassword] = useState('Katrina@18$');
+  const [error,setError]=useState("");
+  const[message,setMessage]=useState('');
   const dispatch=useDispatch(); 
     const navigate=useNavigate();
   const handleLogin = async () => {
- 
-
 try{    const res=await axios.post(BASE_URL+"/login",{
              emailId,password
     },{withCredentials:true});
@@ -21,10 +22,30 @@ try{    const res=await axios.post(BASE_URL+"/login",{
    return navigate("/");
 }
 catch(err){
+     setError(err?.response?.data || "Something went wrong !");
       console.error(err);
     }
     
   }
+
+  const handleForgotPassword = async () => {
+  try {
+    const res = await axios.post(
+      BASE_URL + "/forgotPassword",
+      { emailId }, // make sure you have emailId state
+      { withCredentials: true } // optional if backend needs cookies
+    );
+    
+    // show success message
+    setMessage(res.data.message || "Check your email for reset link!");
+    setError(""); // clear any previous errors
+  } catch (err) {
+    setError(err?.response?.data || "Something went wrong!");
+    setMessage(""); // clear any previous success message
+    console.error(err);
+  }
+};
+
   
 
 
@@ -62,13 +83,15 @@ catch(err){
               className="input input-bordered w-full"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <label className="label">
-              <a href="/forgot-password" className="label-text-alt link link-hover">
-                Forgot password?
-              </a>
-            </label>
-          </div>
+           <label className="label">
+  <Link to="/forgotPassword" className="label-text-alt link link-hover">
+    Forgot password?
+  </Link>
+</label>
 
+            {message && <p className="text-green-500">{message}</p>}
+          </div>
+          <p className='text-red-500'> {error}</p>
           {/* Submit Button */}
           <div className="form-control mt-6">
             <button className="btn btn-primary w-full" onClick={handleLogin}>Login</button>
