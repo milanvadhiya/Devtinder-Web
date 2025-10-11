@@ -55,6 +55,8 @@ If you are developing a production application, we recommend using TypeScript wi
 - implement forgot password festures
 - see all my connections
 - created a page of connection requests
+- acctepyed rejected connection requests
+
 
 Body 
  - navbar

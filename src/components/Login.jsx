@@ -8,12 +8,17 @@ import { BASE_URL } from '../utils/constant';
 import { Link } from 'react-router-dom';
 
 const login = () => {
-  const [emailId, setEmailId] = useState('katrina@gmail.com');
-  const [password, setPassword] = useState('Katrina@18$');
+  const[firstName,setFirstName]=useState("");
+  const[lastName,setLastName]=useState("");
+  const [emailId, setEmailId] = useState('');
+  const [password, setPassword] = useState('');
   const [error,setError]=useState("");
   const[message,setMessage]=useState('');
   const dispatch=useDispatch(); 
+
+  const [isLogin,setIsLogin]=useState(true);
     const navigate=useNavigate();
+
   const handleLogin = async () => {
 try{    const res=await axios.post(BASE_URL+"/login",{
              emailId,password
@@ -27,6 +32,21 @@ catch(err){
     }
     
   }
+
+const handleSignUp=async()=>{
+  try{
+
+ 
+    const res=await axios.post(BASE_URL+'/signup',{firstName,lastName,emailId,password},{withCredentials:true});
+     dispatch(addUser(res?.data?.data));
+        return navigate("/profile");
+ 
+  }catch(Error){
+    setError(Error?.response?.data || "something went wrong!")}
+}
+
+
+
 
   const handleForgotPassword = async () => {
   try {
@@ -54,8 +74,34 @@ catch(err){
       <div className="card w-96 bg-base-300 shadow-lg">
         <div className="card-body">
           <h2 className="text-center text-2xl font-bold text-primary mb-4">
-            Login
+           {isLogin?"Login":"signUp"}
           </h2>
+
+          {!isLogin && ( <><div className="form-control">
+            <label className="label">
+              <span className="label-text">firstName</span>
+            </label>
+            <input
+              type="text"
+              value={firstName}
+              placeholder="Enter a FirstName..."
+              className="input input-bordered w-full"
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">lastName</span>
+            </label>
+            <input
+              type="text"
+              value={lastName}
+              placeholder="Enter a LastName..."
+              className="input input-bordered w-full"
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div></>)}
+
 
           {/* Email Field */}
           <div className="form-control">
@@ -94,16 +140,15 @@ catch(err){
           <p className='text-red-500'> {error}</p>
           {/* Submit Button */}
           <div className="form-control mt-6">
-            <button className="btn btn-primary w-full" onClick={handleLogin}>Login</button>
+            <button className="btn btn-primary w-full" onClick={isLogin?handleLogin:handleSignUp}>
+               {isLogin ?"login":"signUp"}
+              </button>
           </div>
 
           {/* Divider + Signup Link */}
           <div className="divider">OR</div>
-          <p className="text-sm text-center">
-            Don’t have an account?{" "}
-            <a href="/signup" className="link link-primary">
-              Sign Up
-            </a>
+          <p onClick={()=>setIsLogin((value)=>!value)} className="text-sm text-center cursor-pointer">
+            {isLogin?"New User ? signUp Here !":"Existing User? Login Here !"}
           </p>
         </div>
       </div>

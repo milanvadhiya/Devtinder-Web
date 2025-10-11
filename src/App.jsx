@@ -9,6 +9,7 @@ import Feed from "./components/Feed"
 import ForgotAndResetPassword from "./components/ForgotAndResetPassword"
 import Connections from "./components/Connection"
 import Request from "./components/Request"
+import Premium from "./components/Premium"
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
   return (
     <>
       <Provider store={appStore}> 
-    <BrowserRouter basename="/">
+    {/* <BrowserRouter basename="/">
      <Routes>
       <Route path="/" element={<div><Body/></div>}>
           <Route path="/"  element={<Feed/>}/>
@@ -27,7 +28,35 @@ function App() {
             <Route path="/requests"  element={<Request/>}/>
       </Route>
      </Routes>
-    </BrowserRouter>
+    </BrowserRouter> */}
+    <BrowserRouter basename="/">
+          <Routes>
+            <Route path="/" element={<Body />}>
+              <Route path="/" element={<Feed />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/connections" element={<Connections />} />
+              <Route path="/requests" element={<Request />} />
+              <Route path="/premium" element={<Premium />} />
+              
+             
+            </Route>
+          </Routes>
+        </BrowserRouter>
+
+    {/* <BrowserRouter basename="/">
+  <Routes>
+    <Route path="/" element={<div><Body/></div>}>
+      <Route path="/" element={<Feed/>}/>
+      <Route path="/forgotPassword" element={<ForgotAndResetPassword />} />
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/profile" element={<Profile/>}/>
+      <Route path="/connections" element={<Connections/>}/>
+      <Route path="/requests" element={<Request/>}/>
+    </Route>
+  </Routes>
+</BrowserRouter> */}
+
   </Provider>
     </>
   )

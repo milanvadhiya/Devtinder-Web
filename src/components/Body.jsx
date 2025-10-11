@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Body = () => {
   const dispatch=useDispatch();
-  const Navigate=useNavigate();
+  const navigate=useNavigate();
   const userData=useSelector((store)=>store.user);
 
   const userFetch=async ()=>{
@@ -24,13 +24,13 @@ const Body = () => {
   }
   catch(err){
     if(err.response.status===401)
-    Navigate("/login");
+    navigate("/login");
     console.error(err);
   }
   }
   useEffect(()=>{
-    if(!userData)
-   { userFetch();}
+    
+   userFetch();
   },[]);
   return (
     <div className="flex flex-col min-h-screen bg-base-100">

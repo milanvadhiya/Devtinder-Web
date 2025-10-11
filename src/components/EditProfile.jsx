@@ -7,6 +7,7 @@ import { addUser } from '../utils/userSlice'
 import axios from 'axios'
 
 import { BASE_URL } from '../utils/constant'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -22,7 +23,7 @@ const EditProfile = ({user}) => {
   const[error,setError]=useState("");
    const dispatch=useDispatch();
    const[show,setShow]=useState(false);
-
+const navigate=useNavigate();
 const saveProfile= async ()=>{
 
   
@@ -38,6 +39,7 @@ const saveProfile= async ()=>{
     setInterval(()=>{
       setShow(false);
     },3000);
+    navigate("/")
 
   }catch(Error){
 
@@ -151,7 +153,7 @@ const saveProfile= async ()=>{
 
     
 
-    <UserCard user={{firstName,lastName,age,gender,photoUrl,about}}/>
+    <UserCard user={{firstName,lastName,age,gender,photoUrl,about,show}}/>
   </div>
   <div className="toast toast-top toast-center">
   
