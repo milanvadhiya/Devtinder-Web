@@ -3,7 +3,6 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constant";
 import { useNavigate } from "react-router-dom";
 
-
 const ForgotAndResetPassword = () => {
   const [emailId, setEmailId] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -11,33 +10,34 @@ const ForgotAndResetPassword = () => {
   const [step, setStep] = useState(1); // 1 = enter email, 2 = enter new password
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   // Step 1: Send forgot password
- const handleSendLink = async () => {
-  try {
-    const res = await axios.post(`${BASE_URL}/forgotPassword`, { emailId });
-    setMessage(res.data.message || "Reset token generated!");
-    setError("");
-    setToken(res.data.token); // use token directly
-    setStep(2); // go to reset password input
-  } catch (err) {
-    setError(err?.response?.data || "Something went wrong!");
-    setMessage("");
-  }
-};
-
+  const handleSendLink = async () => {
+    try {
+      const res = await axios.post(`${BASE_URL}/forgotPassword`, { emailId });
+      setMessage(res.data.message || "Reset token generated!");
+      setError("");
+      setToken(res.data.token); // use token directly
+      setStep(2); // go to reset password input
+    } catch (err) {
+      setError(err?.response?.data || "Something went wrong!");
+      setMessage("");
+    }
+  };
 
   // Step 2: Reset password
   const handleResetPassword = async () => {
     try {
-      const res = await axios.post(BASE_URL + `/resetPassword/${token}`, { newPassword });
+      const res = await axios.post(BASE_URL + `/resetPassword/${token}`, {
+        newPassword,
+      });
       setMessage(res.data || "Password reset successful!");
       setError("");
       setStep(1); // back to email input if you want
       setEmailId("");
       setNewPassword("");
-       setTimeout(() => {
+      setTimeout(() => {
         navigate("../login");
       }, 1000);
     } catch (err) {
@@ -63,7 +63,10 @@ const ForgotAndResetPassword = () => {
                 placeholder="Enter your email"
                 className="input input-bordered w-full mb-2"
               />
-              <button className="btn btn-primary w-full mt-2" onClick={handleSendLink}>
+              <button
+                className="btn btn-primary w-full mt-2"
+                onClick={handleSendLink}
+              >
                 Send Reset Link
               </button>
             </>
@@ -76,7 +79,10 @@ const ForgotAndResetPassword = () => {
                 placeholder="Enter new password"
                 className="input input-bordered w-full mb-2"
               />
-              <button className="btn btn-primary w-full mt-2" onClick={handleResetPassword}>
+              <button
+                className="btn btn-primary w-full mt-2"
+                onClick={handleResetPassword}
+              >
                 Reset Password
               </button>
             </>
