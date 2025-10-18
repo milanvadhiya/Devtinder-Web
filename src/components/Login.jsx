@@ -20,6 +20,8 @@ const login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    console.log("Base URL:", BASE_URL);
+
     try {
       const res = await axios.post(
         `${BASE_URL}/login`,
