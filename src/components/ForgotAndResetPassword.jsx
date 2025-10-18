@@ -16,7 +16,7 @@ const ForgotAndResetPassword = () => {
   // Step 1: Send forgot password
  const handleSendLink = async () => {
   try {
-    const res = await axios.post(BASE_URL + "/forgotPassword", { emailId });
+    const res = await axios.post(`${BASE_URL}/forgotPassword`, { emailId });
     setMessage(res.data.message || "Reset token generated!");
     setError("");
     setToken(res.data.token); // use token directly

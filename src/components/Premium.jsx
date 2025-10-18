@@ -5,7 +5,7 @@ import { BASE_URL } from '../utils/constant'
 const Premium = () => {
 
      const handleBuyClick=async(type)=>{
-         const order=await axios.post(BASE_URL+"/payment/create",{
+         const order=await axios.post(`${BASE_URL}/payment/create`,{
             memberShipType:type, 
          },{withCredentials:true});
          // razorpay dailog box..
